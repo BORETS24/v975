@@ -1,0 +1,87 @@
+/*
+ *  ctp_rhb_machine.h - ASoc Machine driver for Intel Cloverview MID platform
+ *
+ *  Copyright (C) 2011-13 Intel Corp
+ *  Author: Selma Bensaid <selma.bensaid@intel.com>
+ *  Author: Dharageswari.R <dharageswari.r@intel.com>
+ *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; version 2 of the License.
+ *
+ *  This program is distributed in the hope that it will be useful, but
+ *  WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *  General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License along
+ *  with this program; if not, write to the Free Software Foundation, Inc.,
+ *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.
+ *
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+#ifndef MFLD_SSP_WL1273_MACHINE_H_
+#define MFLD_SSP_WL1273_MACHINE_H_
+#include <linux/init.h>
+#include <linux/device.h>
+#include <linux/slab.h>
+#include <sound/pcm.h>
+#include <sound/pcm_params.h>
+#include <sound/soc.h>
+#include "mid_ssp.h"
+
+
+/*
+ * For FM 1 slot of 32 bits is used
+ * to transfer stereo 16 bits PCM samples
+ */
+#define SSP_FM_SLOT_NB_SLOT		1
+#define SSP_FM_SLOT_WIDTH		32
+#define SSP_FM_SLOT_RX_MASK		0x1
+#define SSP_FM_SLOT_TX_MASK		0x0
+/*
+ * For BT SCO 1 slot of 16 bits is used
+ * to transfer mono 16 bits PCM samples
+ */
+#define SSP_BT_SLOT_NB_SLOT		1
+#define SSP_BT_SLOT_WIDTH		16
+#define SSP_BT_SLOT_RX_MASK		0x1
+#define SSP_BT_SLOT_TX_MASK		0x1
+
+/*
+ * For VoIP 1 slot of 32 bits is used
+ * to transfer stereo 16 bits PCM samples
+ */
+#define SSP_VOIP_SLOT_NB_SLOT	1
+#define SSP_VOIP_SLOT_WIDTH		32
+#define SSP_VOIP_SLOT_RX_MASK	0x1
+#define SSP_VOIP_SLOT_TX_MASK	0x1
+
+/*
+ * For Modem IFX 1 slot of 32 bits is used
+ * to transfer stereo 16 bits PCM samples
+ */
+#define SSP_IFX_SLOT_NB_SLOT	1
+#define SSP_IFX_SLOT_WIDTH		32
+#define SSP_IFX_SLOT_RX_MASK	0x1
+#define SSP_IFX_SLOT_TX_MASK	0x1
+
+/*
+ * MIXER CONTROLS for SSP BT
+ */
+static const char * const ssp_master_mode_text[] = {"disabled", "enabled"};
+
+static const struct soc_enum ssp_bt_sco_master_mode_enum =
+	SOC_ENUM_SINGLE_EXT(2, ssp_master_mode_text);
+
+static const struct soc_enum ssp_voip_master_mode_enum =
+	SOC_ENUM_SINGLE_EXT(2, ssp_master_mode_text);
+
+static const struct soc_enum ssp_modem_master_mode_enum =
+	SOC_ENUM_SINGLE_EXT(2, ssp_master_mode_text);
+
+
+
+#endif /* MFLD_SSP_WL1273_MACHINE_H_ */
